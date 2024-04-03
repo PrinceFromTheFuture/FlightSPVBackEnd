@@ -3,5 +3,5 @@ interface test {
 }
 
 export const ts1: test = {
-  objet: "32",
+  objet: "332",
 };
