@@ -1,63 +1,75 @@
 import { Schema, model } from "mongoose";
 import { flightInterface, flightSchemaInterface } from "../types";
-import AgentModel from "./agentModel";
+import AgentModel from "./agentModel"; // Import the AgentModel
 import AirportModel from "./airportModel";
 
+// Schema definition for FlightModel
+
 const flightSchema = new Schema<flightSchemaInterface>({
-  personalRole: { type: String, required: true },
-  counters: { type: String, required: true },
+  personalRole: { type: String },
+  counters: { type: String },
   crew: {
     agents: [
       {
-        type: Schema.Types.ObjectId,
-        ref: AgentModel,
+        agent: {
+          type: Schema.Types.ObjectId,
+          ref: AgentModel.modelName,
+        },
+        notes: { type: String },
+        _id: false,
       },
     ],
     SPV: {
-      type: Schema.Types.ObjectId,
-      ref: AgentModel,
+      agent: {
+        type: Schema.Types.ObjectId || null,
+        ref: AgentModel.modelName,
+      },
+      notes: { type: String },
     },
     rampAgent: {
-      type: Schema.Types.ObjectId,
-      ref: AgentModel,
+      agent: {
+        type: Schema.Types.ObjectId || null,
+        ref: AgentModel.modelName,
+      },
+      notes: { type: String },
     },
   },
   destenation: {
     type: Schema.Types.ObjectId,
-    ref: AirportModel,
+    ref: AirportModel.modelName,
   },
   origin: {
     type: Schema.Types.ObjectId,
-    ref: AirportModel,
+    ref: AirportModel.modelName,
   },
-  flightNumber: { type: String, required: true },
-  gate: { type: String, required: true },
-  flightId: { type: String, required: true },
+  flightNumber: { type: String },
+  gate: { type: String },
+  flightId: { type: String },
   keyMoments: {
     planned: {
-      shiftStarts: { type: String, required: true },
-      countersOpening: { type: String, required: true },
-      countersClosing: { type: String, required: true },
-      bording: { type: String, required: true },
-      departure: { type: String, required: true },
+      shiftStarts: { type: String },
+      countersOpening: { type: String },
+      countersClosing: { type: String },
+      bording: { type: String },
+      departure: { type: String },
     },
     actual: {
-      countersOpening: { type: String, required: true },
-      countersClosing: { type: String, required: true },
-      bordingEnd: { type: String, required: true },
-      bordingStart: { type: String, required: true },
-      offBlock: { type: String, required: true },
-      openningBoardingPagia: { type: String, required: true },
+      countersOpening: { type: String },
+      countersClosing: { type: String },
+      bordingEnd: { type: String },
+      bordingStart: { type: String },
+      offBlock: { type: String },
+      openningBoardingPagia: { type: String },
     },
   },
-  flightTime: { type: String, required: true },
+  flightTime: { type: String },
   PAGIAAgent: {
     type: String,
   },
-  totalPassangers: { type: Number, required: true },
-  totalStrollers: { type: Number, required: true },
-  totalSuitcases: { type: Number, required: true },
-  localApplicationId: { type: Number, required: true },
+  totalPassangers: { type: Number },
+  totalStrollers: { type: Number },
+  totalSuitcases: { type: Number },
+  localApplicationId: { type: Number },
 });
 const FlightModel = model("Flight", flightSchema);
 

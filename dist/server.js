@@ -11,8 +11,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", { value: true });
 const express = require("express");
 const mongoose = require("mongoose");
-const flightsRouter_1 = require("./routes/flightsRouter");
 const dotenv_1 = require("dotenv");
+const flightsRouter_1 = require("./routes/flightsRouter");
 const agentsRouter_1 = require("./routes/agentsRouter");
 const airportsRouter_1 = require("./routes/airportsRouter");
 const bodyParser = require("body-parser");

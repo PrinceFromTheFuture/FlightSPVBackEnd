@@ -30,9 +30,12 @@ export interface flightSchemaInterface {
   personalRole: string;
   counters: string;
   crew: {
-    agents: (Schema.Types.ObjectId | string)[];
-    SPV: Schema.Types.ObjectId | string;
-    rampAgent: Schema.Types.ObjectId | string;
+    agents: { agent: Schema.Types.ObjectId | string; notes?: string }[];
+    SPV: { agent: Schema.Types.ObjectId | string; notes?: string } | null;
+    rampAgent: {
+      agent: Schema.Types.ObjectId | string;
+      notes?: string;
+    } | null;
   };
   destenation: Schema.Types.ObjectId | string;
   origin: Schema.Types.ObjectId | string;
@@ -62,6 +65,7 @@ export interface flightSchemaInterface {
   totalPassangers: number;
   totalStrollers: number;
   totalSuitcases: number;
+  localApplicationId: number;
 }
 export interface flightInterface {
   personalRole: "SPV" | "Agent";

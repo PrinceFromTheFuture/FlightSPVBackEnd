@@ -1,6 +1,6 @@
 import { nanoid } from "@reduxjs/toolkit";
-import { agentsJS } from "../agents";
-import AgentModel from "../models/agentModel";
+import { agentsJS } from "./AeroAgents";
+import AgentModel from "../../models/agentModel";
 
 export const addAllAeroAgents = async () => {
   let count: number = 0;

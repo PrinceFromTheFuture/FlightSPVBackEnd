@@ -1,5 +1,5 @@
-import * as express from "express";
 import AirportModel from "../models/airportModel";
+import * as express from "express";
 
 const airportsRouter = express.Router();
 

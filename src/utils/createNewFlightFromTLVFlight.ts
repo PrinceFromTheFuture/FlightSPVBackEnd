@@ -1,13 +1,9 @@
 import { nanoid } from "@reduxjs/toolkit";
 import FlightModel from "../models/flightModel";
-import {
-  flightInterface,
-  flightSchemaInterface,
-  tlvFlightInterface,
-} from "../types";
-import { HydratedDocument, Schema } from "mongoose";
+import { flightSchemaInterface, tlvFlightInterface } from "../types";
 import AirportModel from "../models/airportModel";
 import * as dayjs from "dayjs";
+import getPopulatedFlight from "./getPopulatedFlight";
 
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
   const { city, counters, dateString, flightNumber, localApplicationId } =
@@ -23,24 +19,24 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
   const newFlight = new FlightModel<flightSchemaInterface>({
     counters: counters,
     crew: {
-      agents: ["66103cbeb04bb4beb3cab227", "66103cbeb04bb4beb3cab227"],
-      rampAgent: "66103cbeb04bb4beb3cab227",
-      SPV: "66103cbeb04bb4beb3cab227",
+      agents: [],
+      SPV: null,
+      rampAgent: null,
     },
     destenation: String(destenationDocumentId),
     origin: "6610837e118a7c0269b2159a",
     flightId: nanoid(),
     flightNumber: flightNumber,
-    flightTime: "",
-    gate: "",
+    flightTime: "houres",
+    gate: "houres",
     keyMoments: {
       actual: {
-        countersOpening: "",
-        countersClosing: "",
-        bordingEnd: "",
-        bordingStart: "",
-        offBlock: "",
-        openningBoardingPagia: "",
+        countersOpening: "houres",
+        countersClosing: "houres",
+        bordingEnd: "houres",
+        bordingStart: "houres",
+        offBlock: "houres",
+        openningBoardingPagia: "houres",
       },
       planned: {
         shiftStarts: dayjs(dateString).subtract(210, "minutes").toISOString(),
@@ -54,7 +50,7 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
         departure: dayjs(dateString).toISOString(),
       },
     },
-    PAGIAAgent: "",
+    PAGIAAgent: "houres",
     totalPassangers: 0,
     totalSuitcases: 0,
     totalStrollers: 0,
@@ -62,7 +58,9 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
     localApplicationId: localApplicationId,
   });
   const savedFlight = await newFlight.save();
-  return savedFlight;
+  const populatedFlight = getPopulatedFlight(savedFlight._id);
+
+  return populatedFlight;
 };
 
 export default createNewFlightFromTLVFlight;

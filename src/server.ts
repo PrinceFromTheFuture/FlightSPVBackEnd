@@ -1,11 +1,9 @@
 import * as express from "express";
 import * as mongoose from "mongoose";
-import flightsRouter from "./routes/flightsRouter";
 import { configDotenv } from "dotenv";
+import flightsRouter from "./routes/flightsRouter";
 import agentsRouter from "./routes/agentsRouter";
 import airportsRouter from "./routes/airportsRouter";
-import { getTLVDepartures } from "./utils/getTLVDepartures";
-import * as dayjs from "dayjs";
 import * as bodyParser from "body-parser";
 configDotenv();
 

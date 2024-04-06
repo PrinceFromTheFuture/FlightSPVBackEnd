@@ -1,6 +1,6 @@
 import * as express from "express";
 import AgentModel from "../models/agentModel";
-import { agentsJS } from "../agents";
+import { agentsJS } from "../utils/devUtils/AeroAgents";
 import { nanoid } from "@reduxjs/toolkit";
 
 const agentsRouter = express.Router();
