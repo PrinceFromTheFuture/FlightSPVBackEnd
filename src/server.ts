@@ -1,4 +1,4 @@
-import * as express from "express";
+import express from "express";
 import * as mongoose from "mongoose";
 import { configDotenv } from "dotenv";
 import flightsRouter from "./routes/flightsRouter";

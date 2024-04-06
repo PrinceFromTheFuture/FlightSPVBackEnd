@@ -2,7 +2,7 @@ import { nanoid } from "nanoid";
 import FlightModel from "../models/flightModel";
 import { flightSchemaInterface, tlvFlightInterface } from "../types";
 import AirportModel from "../models/airportModel";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import getPopulatedFlight from "./getPopulatedFlight";
 
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {

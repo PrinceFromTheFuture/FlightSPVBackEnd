@@ -5,7 +5,7 @@
 // for that flight that can be located later on
 
 import axios from "axios";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 import { tlvFlightInterface } from "../types";
 
 interface getTLVDeparturesInterface {

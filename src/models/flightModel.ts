@@ -33,7 +33,6 @@ const flightSchema = new Schema<flightSchemaInterface>({
       },
       notes: { type: String },
     },
-    required: true,
   },
   destenation: {
     type: Schema.Types.ObjectId,
