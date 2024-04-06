@@ -1,4 +1,4 @@
-import { nanoid } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 import { agentsJS } from "./AeroAgents";
 import AgentModel from "../../models/agentModel";
 

@@ -6,8 +6,8 @@ import AirportModel from "./airportModel";
 // Schema definition for FlightModel
 
 const flightSchema = new Schema<flightSchemaInterface>({
-  personalRole: { type: String },
-  counters: { type: String },
+  personalRole: { type: String, required: true },
+  counters: { type: String, required: true },
   crew: {
     agents: [
       {
@@ -33,25 +33,28 @@ const flightSchema = new Schema<flightSchemaInterface>({
       },
       notes: { type: String },
     },
+    required: true,
   },
   destenation: {
     type: Schema.Types.ObjectId,
     ref: AirportModel.modelName,
+    required: true,
   },
   origin: {
     type: Schema.Types.ObjectId,
     ref: AirportModel.modelName,
+    required: true,
   },
-  flightNumber: { type: String },
-  gate: { type: String },
-  flightId: { type: String },
+  flightNumber: { type: String, required: true },
+  gate: { type: String, required: true },
+  flightId: { type: String, required: true },
   keyMoments: {
     planned: {
-      shiftStarts: { type: String },
-      countersOpening: { type: String },
-      countersClosing: { type: String },
-      bording: { type: String },
-      departure: { type: String },
+      shiftStarts: { type: String, required: true },
+      countersOpening: { type: String, required: true },
+      countersClosing: { type: String, required: true },
+      bording: { type: String, required: true },
+      departure: { type: String, required: true },
     },
     actual: {
       countersOpening: { type: String },
@@ -62,14 +65,14 @@ const flightSchema = new Schema<flightSchemaInterface>({
       openningBoardingPagia: { type: String },
     },
   },
-  flightTime: { type: String },
+  flightTime: { type: String, required: true },
   PAGIAAgent: {
     type: String,
   },
-  totalPassangers: { type: Number },
-  totalStrollers: { type: Number },
-  totalSuitcases: { type: Number },
-  localApplicationId: { type: Number },
+  totalPassangers: { type: Number, required: true },
+  totalStrollers: { type: Number, required: true },
+  totalSuitcases: { type: Number, required: true },
+  localApplicationId: { type: Number, required: true },
 });
 const FlightModel = model("Flight", flightSchema);
 

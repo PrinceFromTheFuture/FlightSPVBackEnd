@@ -1,4 +1,4 @@
-import { nanoid } from "@reduxjs/toolkit";
+import { nanoid } from "nanoid";
 import FlightModel from "../models/flightModel";
 import { flightSchemaInterface, tlvFlightInterface } from "../types";
 import AirportModel from "../models/airportModel";
