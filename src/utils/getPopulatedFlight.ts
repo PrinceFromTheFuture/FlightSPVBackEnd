@@ -1,5 +1,4 @@
 import monogoose from "mongoose";
-import { flightInterface, flightSchemaInterface } from "../types";
 import FlightModel from "../models/flightModel";
 
 const getPopulatedFlight = async (flightId: monogoose.Types.ObjectId) => {
