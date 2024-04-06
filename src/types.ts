@@ -1,5 +1,5 @@
 import { Dayjs } from "dayjs";
-import { Schema, model } from "mongoose";
+import { Schema } from "mongoose";
 
 export type agentType = {
   name: string;

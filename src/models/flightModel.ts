@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-import { flightInterface, flightSchemaInterface } from "../types";
+import { flightSchemaInterface } from "../types";
 import AgentModel from "./agentModel"; // Import the AgentModel
 import AirportModel from "./airportModel";
 

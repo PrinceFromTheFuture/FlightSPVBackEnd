@@ -3,7 +3,6 @@ import AirportModel from "../models/airportModel";
 import FlightModel from "../models/flightModel";
 import { getTLVDepartures } from "../utils/getTLVDepartures";
 import { tlvFlightInterface } from "../types";
-import createNewFlight from "../utils/createNewFlight";
 import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight";
 
 const flightsRouter = express.Router();
