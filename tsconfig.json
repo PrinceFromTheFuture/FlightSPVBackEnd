@@ -1,15 +1,14 @@
 {
   "compilerOptions": {
-  "target": "es6",
-  "module": "es6",
-  "outDir": "./dist",
-  "moduleResolution": "node",
-  "rootDir": "./src",
-  "esModuleInterop": true,
-  "sourceMap": true,
-  "strictNullChecks": true,
-  "strictPropertyInitialization": true,
-  "noUnusedLocals": true,
-  },
-
+    "target": "es6",
+    "module": "CommonJS",
+    "outDir": "./dist",
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "esModuleInterop": true,
+    "sourceMap": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
+    "noUnusedLocals": true
   }
+}
