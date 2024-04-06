@@ -1,4 +1,4 @@
-import { nanoid } from "nanoid";
+import nanoid from "nanoid";
 import FlightModel from "../models/flightModel";
 import { flightSchemaInterface, tlvFlightInterface } from "../types";
 import AirportModel from "../models/airportModel";
@@ -25,7 +25,7 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
     },
     destenation: String(destenationDocumentId),
     origin: "6610837e118a7c0269b2159a",
-    flightId: nanoid(),
+    flightId: nanoid.nanoid(),
     flightNumber: flightNumber,
     flightTime: "houres",
     gate: "houres",
