@@ -1,62 +1,25 @@
-"use strict";
-var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    var desc = Object.getOwnPropertyDescriptor(m, k);
-    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
-      desc = { enumerable: true, get: function() { return m[k]; } };
-    }
-    Object.defineProperty(o, k2, desc);
-}) : (function(o, m, k, k2) {
-    if (k2 === undefined) k2 = k;
-    o[k2] = m[k];
-}));
-var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
-    Object.defineProperty(o, "default", { enumerable: true, value: v });
-}) : function(o, v) {
-    o["default"] = v;
-});
-var __importStar = (this && this.__importStar) || function (mod) {
-    if (mod && mod.__esModule) return mod;
-    var result = {};
-    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
-    __setModuleDefault(result, mod);
-    return result;
-};
-var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
-    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-const express_1 = __importDefault(require("express"));
-const mongoose = __importStar(require("mongoose"));
-const dotenv_1 = require("dotenv");
-const flightsRouter_1 = __importDefault(require("./routes/flightsRouter"));
-const agentsRouter_1 = __importDefault(require("./routes/agentsRouter"));
-const airportsRouter_1 = __importDefault(require("./routes/airportsRouter"));
-const bodyParser = __importStar(require("body-parser"));
-(0, dotenv_1.configDotenv)();
-const app = (0, express_1.default)();
+import express from "express";
+import * as mongoose from "mongoose";
+import { configDotenv } from "dotenv";
+import flightsRouter from "./routes/flightsRouter";
+import agentsRouter from "./routes/agentsRouter";
+import airportsRouter from "./routes/airportsRouter";
+import * as bodyParser from "body-parser";
+configDotenv();
+const app = express();
 const applicationPort = process.env.PORT || 3000;
 const DBConnectionString = process.env.DB;
-app.use(express_1.default.Router());
+app.use(express.Router());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express_1.default.json());
-app.use("/flights", flightsRouter_1.default);
-app.use("/agents", agentsRouter_1.default);
-app.use("/airports", airportsRouter_1.default);
-app.listen(applicationPort, () => __awaiter(void 0, void 0, void 0, function* () {
+app.use(express.json());
+app.use("/flights", flightsRouter);
+app.use("/agents", agentsRouter);
+app.use("/airports", airportsRouter);
+app.listen(applicationPort, async () => {
     console.log(`flight SPV application api server is live and listening on port ${applicationPort}`);
     if (DBConnectionString) {
         try {
-            yield mongoose.connect(DBConnectionString);
+            await mongoose.connect(DBConnectionString);
             console.log("connected to DB");
         }
         catch (e) {
@@ -66,7 +29,7 @@ app.listen(applicationPort, () => __awaiter(void 0, void 0, void 0, function* ()
     else {
         console.log("please config DB connection string ");
     }
-}));
+});
 app.get("/", (req, res) => {
     res.send("fdsd");
 });
