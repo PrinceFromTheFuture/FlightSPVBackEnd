@@ -39,4 +39,7 @@ app.listen(applicationPort, () => __awaiter(void 0, void 0, void 0, function* ()
         console.log("please config DB connection string ");
     }
 }));
+app.get("/", (req, res) => {
+    res.send("fdsd");
+});
 //# sourceMappingURL=server.js.map

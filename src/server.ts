@@ -33,3 +33,7 @@ app.listen(applicationPort, async () => {
     console.log("please config DB connection string ");
   }
 });
+
+app.get("/", (req, res) => {
+  res.send("fdsd");
+});
