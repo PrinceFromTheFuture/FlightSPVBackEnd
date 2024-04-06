@@ -1,5 +1,5 @@
 import monogoose from "mongoose";
-import FlightModel from "../models/flightModel";
+import FlightModel from "../models/flightModel.js";
 
 const getPopulatedFlight = async (flightId: monogoose.Types.ObjectId) => {
   const populatedFlight = await FlightModel.findById(flightId)

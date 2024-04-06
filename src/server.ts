@@ -1,10 +1,10 @@
 import express from "express";
 import * as mongoose from "mongoose";
 import { configDotenv } from "dotenv";
-import flightsRouter from "./routes/flightsRouter";
-import agentsRouter from "./routes/agentsRouter";
-import airportsRouter from "./routes/airportsRouter";
-import * as bodyParser from "body-parser";
+import flightsRouter from "./routes/flightsRouter.js";
+import agentsRouter from "./routes/agentsRouter.js";
+import airportsRouter from "./routes/airportsRouter.js";
+import bodyParser from "body-parser";
 configDotenv();
 
 const app = express();

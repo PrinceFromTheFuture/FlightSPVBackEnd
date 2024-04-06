@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
-import { flightSchemaInterface } from "../types";
-import AgentModel from "./agentModel"; // Import the AgentModel
-import AirportModel from "./airportModel";
+import { flightSchemaInterface } from "../types.js";
+import AgentModel from "./agentModel.js"; // Import the AgentModel
+import AirportModel from "./airportModel.js";
 
 // Schema definition for FlightModel
 

@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "target": "ES2022",
-    "module": "ES2022",
+    "module": "nodeNext",
     "outDir": "./dist",
-    "moduleResolution": "node",
+    "moduleResolution": "NodeNext",
     "rootDir": "./src",
     "esModuleInterop": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "strictPropertyInitialization": true,
-    "noUnusedLocals": true
+    "noUnusedLocals": true,
   }
 }

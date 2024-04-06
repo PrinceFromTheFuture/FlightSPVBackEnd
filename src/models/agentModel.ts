@@ -1,5 +1,5 @@
 import mongoose, { Schema } from "mongoose";
-import { agentType } from "../types";
+import { agentType } from "../types.js";
 
 const agentSchema = new Schema<agentType>({
   agentId: String,

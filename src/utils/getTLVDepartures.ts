@@ -6,7 +6,7 @@
 
 import axios from "axios";
 import dayjs from "dayjs";
-import { tlvFlightInterface } from "../types";
+import { tlvFlightInterface } from "../types.js";
 
 interface getTLVDeparturesInterface {
   from: string;

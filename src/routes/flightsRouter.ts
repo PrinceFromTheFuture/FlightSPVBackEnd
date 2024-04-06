@@ -1,9 +1,9 @@
 import * as express from "express";
-import AirportModel from "../models/airportModel";
-import FlightModel from "../models/flightModel";
-import { getTLVDepartures } from "../utils/getTLVDepartures";
-import { tlvFlightInterface } from "../types";
-import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight";
+import AirportModel from "../models/airportModel.js";
+import FlightModel from "../models/flightModel.js";
+import { getTLVDepartures } from "../utils/getTLVDepartures.js";
+import { tlvFlightInterface } from "../types.js";
+import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight.js";
 
 const flightsRouter = express.Router();
 

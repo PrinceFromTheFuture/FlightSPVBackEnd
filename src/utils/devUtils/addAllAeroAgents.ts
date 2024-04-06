@@ -1,6 +1,6 @@
 import { nanoid } from "nanoid";
-import { agentsJS } from "./AeroAgents";
-import AgentModel from "../../models/agentModel";
+import { agentsJS } from "./AeroAgents.js";
+import AgentModel from "../../models/agentModel.js";
 
 export const addAllAeroAgents = async () => {
   let count: number = 0;

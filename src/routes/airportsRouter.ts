@@ -1,4 +1,4 @@
-import AirportModel from "../models/airportModel";
+import AirportModel from "../models/airportModel.js";
 import * as express from "express";
 
 const airportsRouter = express.Router();

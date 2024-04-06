@@ -1,9 +1,9 @@
-import nanoid from "nanoid";
-import FlightModel from "../models/flightModel";
-import { flightSchemaInterface, tlvFlightInterface } from "../types";
-import AirportModel from "../models/airportModel";
+import FlightModel from "../models/flightModel.js";
+import { flightSchemaInterface, tlvFlightInterface } from "../types.js";
+import AirportModel from "../models/airportModel.js";
 import dayjs from "dayjs";
-import getPopulatedFlight from "./getPopulatedFlight";
+import getPopulatedFlight from "./getPopulatedFlight.js";
+import { nanoid } from "@reduxjs/toolkit";
 
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
   const { city, counters, dateString, flightNumber, localApplicationId } =
@@ -25,7 +25,7 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
     },
     destenation: String(destenationDocumentId),
     origin: "6610837e118a7c0269b2159a",
-    flightId: nanoid.nanoid(),
+    flightId: nanoid(),
     flightNumber: flightNumber,
     flightTime: "houres",
     gate: "houres",
