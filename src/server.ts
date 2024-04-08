@@ -5,12 +5,14 @@ import flightsRouter from "./routes/flightsRouter.js";
 import agentsRouter from "./routes/agentsRouter.js";
 import airportsRouter from "./routes/airportsRouter.js";
 import bodyParser from "body-parser";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat.js";
 configDotenv();
+dayjs.extend(customParseFormat);
 
 const app = express();
 const applicationPort = process.env.PORT || 3000;
 const DBConnectionString = process.env.DB;
-
 app.use(express.Router());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.json());

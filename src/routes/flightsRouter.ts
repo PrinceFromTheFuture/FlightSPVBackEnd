@@ -1,23 +1,24 @@
-import * as express from "express";
-import AirportModel from "../models/airportModel.js";
+import express from "express";
 import FlightModel from "../models/flightModel.js";
 import { getTLVDepartures } from "../utils/getTLVDepartures.js";
 import { tlvFlightInterface } from "../types.js";
 import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight.js";
+import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
+import mongoose from "mongoose";
 
 const flightsRouter = express.Router();
 
-flightsRouter.get("/", async (req, res) => {
-  const newAripoer = new AirportModel({ name: "32d", shortName: "d3as" });
+flightsRouter.get("/newDevFlight", async (req, res) => {
+  const newportId = new mongoose.Types.ObjectId("6614504f440d441fc5a1e461");
 
-  const newport = await newAripoer.save();
+  const agentId32 = new mongoose.Types.ObjectId("66103cbeb04bb4beb3cab225");
 
   const newFlight = new FlightModel({
     personalRole: "BOSS",
     flightNumber: "423",
     flightId: "d32",
-    origin: newport._id,
-    destenation: newport._id,
+    origin: newportId,
+    destenation: newportId,
     flightTime: "234",
     counters: "d32",
     keyMoments: {
@@ -39,12 +40,12 @@ flightsRouter.get("/", async (req, res) => {
     },
     crew: {
       agents: [
-        "660ef7c4226a7bd166d3ec3e ",
-        "660ef7c4226a7bd166d3ec3e",
-        "660ef7c4226a7bd166d3ec3e",
+        { agent: agentId32 },
+        { agent: agentId32 },
+        { agent: agentId32 },
       ],
-      rampAgent: "660ef7c4226a7bd166d3ec3e",
-      SPV: "660ef7c4226a7bd166d3ec3e",
+      rampAgent: { agent: agentId32 },
+      SPV: { agent: agentId32 },
     },
 
     gate: "d32",
@@ -52,17 +53,28 @@ flightsRouter.get("/", async (req, res) => {
     totalPassangers: 323,
     totalSuitcases: 323,
     totalStrollers: 323,
+    localApplicationId: 4783248732,
   });
-
-  res.send(JSON.stringify(newFlight));
+  try {
+    const test = await newFlight.save();
+    res.json(test);
+  } catch (e) {
+    console.log(e);
+  }
 });
 
 flightsRouter.post("/tlvFlights", async (req, res) => {
   const from = req.body.from;
-  const to = req.body.from;
-  console.log(req.body);
+  const to = req.body.to;
+
   const json = await getTLVDepartures({ from, to });
   res.json(json);
+});
+
+flightsRouter.get("/allFlights", async (req, res) => {
+  const allFlights = await getAllPopulatedFlights();
+
+  res.json(allFlights);
 });
 
 flightsRouter.post("/saveNewFlightFromTLVFlight", async (req, res) => {

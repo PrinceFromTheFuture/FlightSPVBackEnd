@@ -1,4 +1,3 @@
-import { Dayjs } from "dayjs";
 import { Schema } from "mongoose";
 
 export type agentType = {
@@ -8,13 +7,16 @@ export type agentType = {
   agentId: string;
   phone: string;
   email: string;
+  _id: string;
+  __v?: string;
 };
 export type flightCrewType = {
-  agents: agentType[];
-  SPV: agentType;
-  rampAgent: agentType;
+  agents: { agent: agentType[]; notes?: string };
+  SPV: { agent: agentType[]; notes?: string };
+  rampAgent: { agent: agentType[]; notes?: string };
 };
 export type airportType = {
+  _id: string;
   code: string;
   name: string;
   airportId: string;
@@ -68,44 +70,38 @@ export interface flightSchemaInterface {
   localApplicationId: number;
 }
 export interface flightInterface {
-  personalRole: "SPV" | "Agent";
-  flightNumber: string;
-  flightId: string;
-  origin: airportType;
-  destenation: airportType;
-  flightTime: string;
-  counters: string;
+  crew: flightCrewType;
   keyMoments: {
     planned: {
-      shiftStarts: Dayjs | string;
-      countersOpening: Dayjs | string;
-      countersClosing: Dayjs | string;
-      bording: Dayjs | string;
-      departure: Dayjs | string;
+      shiftStarts: string;
+      countersOpening: string;
+      countersClosing: string;
+      bording: string;
+      departure: string;
     };
     actual: {
-      countersOpening: Dayjs | string;
-      countersClosing: Dayjs | string;
-      bordingEnd: Dayjs | string;
-      bordingStart: Dayjs | string;
-      offBlock: Dayjs | string;
-      openningBoardingPagia: Dayjs | string;
+      countersOpening: string;
+      countersClosing: string;
+      bordingEnd: string;
+      bordingStart: string;
+      offBlock: string;
+      openningBoardingPagia: string;
     };
   };
-  crew: flightCrewType;
-
+  _id: string;
+  personalRole: string;
+  counters: string;
+  destenation: agentType;
+  origin: agentType;
+  flightNumber: string;
   gate: string;
+  flightId: string;
+  flightTime: string;
   PAGIAAgent: string;
-  totalPassangers: number;
-  totalSuitcases: number;
-  totalStrollers: number;
-}
-
-export interface tlvAvalableFlight {
-  Flight: string;
-  City: string;
-  date: string;
-  id: string;
-  Counter: null | string;
+  totalPassangers: 323;
+  totalStrollers: 323;
+  totalSuitcases: 323;
+  localApplicationId: number;
+  __v?: 0;
 }
 [];
