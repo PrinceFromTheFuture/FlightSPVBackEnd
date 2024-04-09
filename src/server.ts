@@ -7,10 +7,13 @@ import airportsRouter from "./routes/airportsRouter.js";
 import bodyParser from "body-parser";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
+import cors from "cors";
+import FlightModel from "./models/flightModel.js";
 configDotenv();
 dayjs.extend(customParseFormat);
 
 const app = express();
+app.use(cors());
 const applicationPort = process.env.PORT || 3000;
 const DBConnectionString = process.env.DB;
 app.use(express.Router());
@@ -36,6 +39,7 @@ app.listen(applicationPort, async () => {
   }
 });
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
+  await FlightModel.deleteMany();
   res.send("fdsd");
 });

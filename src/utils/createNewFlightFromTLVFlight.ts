@@ -4,6 +4,7 @@ import AirportModel from "../models/airportModel.js";
 import dayjs from "dayjs";
 import { getPopulatedFlightById } from "./getPopulatedFlights.js";
 import { nanoid } from "@reduxjs/toolkit";
+import mongoose from "mongoose";
 
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
   const { city, counters, dateString, flightNumber, localApplicationId } =
@@ -18,15 +19,18 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
     ? desteneationAirportDocument._id
     : "66108109118a7c0269b21599";
 
-  const newFlight = new FlightModel<flightSchemaInterface>({
+  const cityID = new mongoose.Types.ObjectId("6614504f440d441fc5a1e461");
+  const agentID = new mongoose.Types.ObjectId("66103cbfb04bb4beb3cab22b");
+
+  const newFlight = new FlightModel({
     counters: counters || "",
     crew: {
-      agents: [],
-      SPV: null,
-      rampAgent: null,
+      agents: [{ agent: agentID, notes: "cant work late" }],
+      SPV: { agent: agentID },
+      rampAgent: { agent: agentID },
     },
-    destenation: String(destenationDocumentId),
-    origin: "6610837e118a7c0269b2159a",
+    destenation: cityID,
+    origin: cityID,
     flightId: nanoid(),
     flightNumber: flightNumber,
     flightTime: "houres",

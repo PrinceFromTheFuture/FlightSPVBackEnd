@@ -5,6 +5,7 @@ import { tlvFlightInterface } from "../types.js";
 import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight.js";
 import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
+import dayjs from "dayjs";
 
 const flightsRouter = express.Router();
 
@@ -23,19 +24,19 @@ flightsRouter.get("/newDevFlight", async (req, res) => {
     counters: "d32",
     keyMoments: {
       planned: {
-        shiftStarts: "d3",
-        countersOpening: "d3",
-        countersClosing: "d3",
-        bording: "d3",
-        departure: "d3",
+        shiftStarts: dayjs().subtract(210, "minutes").toISOString(),
+        countersOpening: dayjs().subtract(180, "minutes").toISOString(),
+        countersClosing: dayjs().subtract(60, "minutes").toISOString(),
+        bording: dayjs().subtract(45, "minutes").toISOString(),
+        departure: dayjs().toISOString(),
       },
       actual: {
-        countersOpening: "d3",
-        countersClosing: "d3",
-        bordingEnd: "d3",
-        bordingStart: "d3",
-        offBlock: "d3",
-        openningBoardingPagia: "d3",
+        countersOpening: dayjs().toISOString(),
+        countersClosing: dayjs().toISOString(),
+        bordingEnd: dayjs().toISOString(),
+        bordingStart: dayjs().toISOString(),
+        offBlock: dayjs().toISOString(),
+        openningBoardingPagia: dayjs().toISOString(),
       },
     },
     crew: {

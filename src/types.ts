@@ -28,6 +28,42 @@ export interface tlvFlightInterface {
   counters: string;
   localApplicationId: number;
 }
+
+export interface flightInterface {
+  crew: flightCrewType;
+  keyMoments: {
+    planned: {
+      shiftStarts: string;
+      countersOpening: string;
+      countersClosing: string;
+      bording: string;
+      departure: string;
+    };
+    actual: {
+      countersOpening: string;
+      countersClosing: string;
+      bordingEnd: string;
+      bordingStart: string;
+      offBlock: string;
+      openningBoardingPagia: string;
+    };
+  };
+  _id: string;
+  personalRole: string;
+  counters: string;
+  destenation: agentType;
+  origin: agentType;
+  flightNumber: string;
+  gate: string;
+  flightId: string;
+  flightTime: string;
+  PAGIAAgent: string;
+  totalPassangers: 323;
+  totalStrollers: 323;
+  totalSuitcases: 323;
+  localApplicationId: number;
+  __v?: 0;
+}
 export interface flightSchemaInterface {
   personalRole: string;
   counters: string;
@@ -69,39 +105,3 @@ export interface flightSchemaInterface {
   totalSuitcases: number;
   localApplicationId: number;
 }
-export interface flightInterface {
-  crew: flightCrewType;
-  keyMoments: {
-    planned: {
-      shiftStarts: string;
-      countersOpening: string;
-      countersClosing: string;
-      bording: string;
-      departure: string;
-    };
-    actual: {
-      countersOpening: string;
-      countersClosing: string;
-      bordingEnd: string;
-      bordingStart: string;
-      offBlock: string;
-      openningBoardingPagia: string;
-    };
-  };
-  _id: string;
-  personalRole: string;
-  counters: string;
-  destenation: agentType;
-  origin: agentType;
-  flightNumber: string;
-  gate: string;
-  flightId: string;
-  flightTime: string;
-  PAGIAAgent: string;
-  totalPassangers: 323;
-  totalStrollers: 323;
-  totalSuitcases: 323;
-  localApplicationId: number;
-  __v?: 0;
-}
-[];
