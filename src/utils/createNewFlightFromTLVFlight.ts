@@ -1,23 +1,14 @@
 import FlightModel from "../models/flightModel.js";
-import { flightSchemaInterface, tlvFlightInterface } from "../types.js";
-import AirportModel from "../models/airportModel.js";
+import { tlvFlightInterface } from "../types.js";
 import dayjs from "dayjs";
 import { getPopulatedFlightById } from "./getPopulatedFlights.js";
 import { nanoid } from "@reduxjs/toolkit";
 import mongoose from "mongoose";
 
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
-  const { city, counters, dateString, flightNumber, localApplicationId } =
-    tlvFlight;
+  const { counters, dateString, flightNumber, localApplicationId } = tlvFlight;
 
   const date = dayjs(dateString, 'DD/MM/YYYY HH:mm"');
-
-  const desteneationAirportDocument = await AirportModel.findOne({
-    name: city,
-  });
-  const destenationDocumentId = desteneationAirportDocument
-    ? desteneationAirportDocument._id
-    : "66108109118a7c0269b21599";
 
   const cityID = new mongoose.Types.ObjectId("6614504f440d441fc5a1e461");
   const agentID = new mongoose.Types.ObjectId("66103cbfb04bb4beb3cab22b");
