@@ -6,15 +6,15 @@ import { nanoid } from "@reduxjs/toolkit";
 import mongoose from "mongoose";
 
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
-  const { counters, dateString, flightNumber, localApplicationId } = tlvFlight;
+  let { counters, dateString, flightNumber, localApplicationId } = tlvFlight;
 
-  const date = dayjs(dateString, 'DD/MM/YYYY HH:mm"');
+  const date = dayjs(dateString);
 
   const cityID = new mongoose.Types.ObjectId("6614504f440d441fc5a1e461");
   const agentID = new mongoose.Types.ObjectId("66103cbfb04bb4beb3cab22b");
 
   const newFlight = new FlightModel({
-    counters: counters || "",
+    counters: counters,
     crew: {
       agents: [{ agent: agentID, notes: "cant work late" }],
       SPV: { agent: agentID },
