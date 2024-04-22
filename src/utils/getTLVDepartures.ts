@@ -92,10 +92,9 @@ export const getTLVDepartures = async ({
       time = UpdatedTime;
     }
 
-    const dateString = dayjs(
-      `${date}/2024 ${time}`,
-      "DD/MM/YYYY HH:mm"
-    ).toISOString();
+    const dateString = dayjs(`${date}/2024 ${time}`, "DD/MM/YYYY HH:mm")
+      .add(3, "hour")
+      .toISOString();
 
     const newFlight: tlvFlightInterface = {
       flightNumber: Flight,
