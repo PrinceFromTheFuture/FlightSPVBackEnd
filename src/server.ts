@@ -40,6 +40,6 @@ app.listen(applicationPort, async () => {
 });
 
 app.get("/", async (req, res) => {
-  await FlightModel.deleteMany();
+  
   res.send("fdsd");
 });
