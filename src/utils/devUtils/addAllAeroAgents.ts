@@ -1,10 +1,26 @@
 import { nanoid } from "nanoid";
-import { agentsJS } from "./AeroAgents.js";
+import { allAgentsJSON } from "./AeroAgents.js";
 import AgentModel from "../../models/agentModel.js";
 
 export const addAllAeroAgents = async () => {
   let count: number = 0;
-  for (const agent of agentsJS) {
+  const allCurrentAgents = await AgentModel.find();
+
+  const unknownAgents = allAgentsJSON.map((DBAgent) => {
+    const currentAgent = allCurrentAgents.find(
+      (agent) => agent.workerID === DBAgent.workerId
+    );
+    if (!currentAgent) {
+      return DBAgent;
+    } else {
+      return;
+    }
+  });
+
+  for (const agent of unknownAgents) {
+    if (!agent) {
+      return;
+    }
     const { workerId, name, email, mobilePhone, jobDescription } = agent;
 
     const saveNewAgent = async (role: string) => {

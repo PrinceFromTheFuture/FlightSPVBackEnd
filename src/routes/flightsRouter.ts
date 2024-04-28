@@ -6,6 +6,7 @@ import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight.
 import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
+import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
 
 const flightsRouter = express.Router();
 
@@ -98,5 +99,10 @@ flightsRouter.post("/saveNewFlightFromTLVFlight", async (req, res) => {
   const newFlght = await createNewFlightFromTLVFlight(tlvFlight);
 
   res.json(newFlght);
+});
+
+flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
+  const updatedDocumentsCount = await updateAllFlightsBasedOnTLV();
+  res.send(`${updatedDocumentsCount}`);
 });
 export default flightsRouter;

@@ -8,7 +8,6 @@ import bodyParser from "body-parser";
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 import cors from "cors";
-import FlightModel from "./models/flightModel.js";
 configDotenv();
 dayjs.extend(customParseFormat);
 const app = express();
@@ -37,7 +36,6 @@ app.listen(applicationPort, async () => {
     }
 });
 app.get("/", async (req, res) => {
-    await FlightModel.deleteMany();
-    res.send("fdsd");
+    res.send("Welcome To Flight SPV API");
 });
 //# sourceMappingURL=server.js.map
