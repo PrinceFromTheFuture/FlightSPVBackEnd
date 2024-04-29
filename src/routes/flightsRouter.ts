@@ -111,7 +111,7 @@ flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
   );
 });
 
-flightsRouter.get("/generateFlightReport", async (req, res) => {
+flightsRouter.post("/generateFlightReport", async (req, res) => {
   const flightId: string = req.body.flightId;
   await generateFlightReport(flightId);
 
