@@ -16,7 +16,7 @@ const updateAllFlightsBasedOnTLV = async () => {
     );
 
     if (!tlvFlight) {
-      flight.deleteOne();
+      await flight.deleteOne();
       continue;
     }
     const { counters, dateString } = tlvFlight;
