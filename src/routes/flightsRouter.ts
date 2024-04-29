@@ -7,7 +7,6 @@ import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
-import generateFlightReport from "../utils/FlightReportGeneration/generateFlightReport.js";
 import path from "path";
 
 const flightsRouter = express.Router();
@@ -113,6 +112,7 @@ flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
 
 flightsRouter.get("/generateFlightReport", async (req, res) => {
   res.setHeader("Content-Type", "application/pdf");
+  console.log("test");
   const dirname = import.meta.dirname;
   const test = path.join(dirname, "../");
   const test1 = path.join(test, "../");
