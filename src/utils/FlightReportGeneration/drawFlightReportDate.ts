@@ -56,44 +56,56 @@ const drawFlightReportDate: drawFlightReportProps = (flight, page, font) => {
     font,
   });
 
-  page.drawText(flight.keyMoments.actual.countersOpening, {
-    x: 480,
-    y: 463,
-    size: fontSize,
-    font,
-  });
+  page.drawText(
+    dayjs(flight.keyMoments.actual.countersOpening).format("HH:mm"),
+    {
+      x: 480,
+      y: 463,
+      size: fontSize,
+      font,
+    }
+  );
 
-  page.drawText(flight.keyMoments.actual.countersOpening, {
-    x: 450,
-    y: 433,
-    size: fontSize,
-    font,
-  });
+  page.drawText(
+    dayjs(flight.keyMoments.actual.countersOpening).format("HH:mm"),
+    {
+      x: 450,
+      y: 433,
+      size: fontSize,
+      font,
+    }
+  );
   page.drawText("NOTYET", {
     x: 450,
     y: 398,
     size: fontSize,
     font,
   });
-  page.drawText(flight.keyMoments.actual.countersClosing, {
-    x: 370,
-    y: 365,
-    size: fontSize,
-    font,
-  });
-  page.drawText(flight.keyMoments.actual.openningBoardingPagia, {
-    x: 408,
-    y: 323,
-    size: fontSize,
-    font,
-  });
-  page.drawText(flight.keyMoments.actual.bordingStart, {
+  page.drawText(
+    dayjs(flight.keyMoments.actual.countersClosing).format("HH:mm"),
+    {
+      x: 370,
+      y: 365,
+      size: fontSize,
+      font,
+    }
+  );
+  page.drawText(
+    dayjs(flight.keyMoments.actual.openningBoardingPagia).format("HH:mm"),
+    {
+      x: 408,
+      y: 323,
+      size: fontSize,
+      font,
+    }
+  );
+  page.drawText(dayjs(flight.keyMoments.actual.bordingStart).format("HH:mm"), {
     x: 452,
     y: 293,
     size: fontSize,
     font,
   });
-  page.drawText(flight.keyMoments.actual.bordingEnd, {
+  page.drawText(dayjs(flight.keyMoments.actual.bordingEnd).format("HH:mm"), {
     x: 468,
     y: 262,
     size: fontSize,
@@ -105,7 +117,7 @@ const drawFlightReportDate: drawFlightReportProps = (flight, page, font) => {
     size: fontSize,
     font,
   });
-  page.drawText(flight.keyMoments.actual.offBlock, {
+  page.drawText(dayjs(flight.keyMoments.actual.offBlock).format("HH:mm"), {
     x: 345,
     y: 202,
     size: fontSize,

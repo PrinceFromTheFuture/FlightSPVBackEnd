@@ -3,7 +3,7 @@ import FlightModel from "../models/flightModel.js";
 import { flightInterface } from "../types.js";
 
 export const getPopulatedFlightById = async (flightId: string) => {
-  const populatedFlight = (await FlightModel.findOne({ flightId: flightId })
+  const populatedFlight = (await FlightModel.findOne({ flightId })
     .populate("destenation")
     .populate("origin")
     .populate("crew.agents.agent")

@@ -3,10 +3,7 @@ import FlightModel from "../models/flightModel.js";
 import { getTLVDepartures } from "../utils/getTLVDepartures.js";
 import { flightReportKeyMoments, tlvFlightInterface } from "../types.js";
 import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight.js";
-import {
-  getAllPopulatedFlights,
-  getPopulatedFlightById,
-} from "../utils/getPopulatedFlights.js";
+import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
@@ -133,8 +130,9 @@ flightsRouter.patch("/actualKeyMoments", async (req, res) => {
     type,
     value,
   }: { flightId: string; type: flightReportKeyMoments; value: string } =
-    req.body.flightId;
-  const flight = await getPopulatedFlightById(flightId);
+    req.body;
+
+  const flight = await FlightModel.findOne({ flightId: flightId });
   if (flight) {
     flight.keyMoments.actual[type] = value;
     await flight.save();
