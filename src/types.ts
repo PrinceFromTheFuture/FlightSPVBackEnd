@@ -51,8 +51,8 @@ export interface flightInterface {
   _id: string;
   personalRole: string;
   counters: string;
-  destenation: agentType;
-  origin: agentType;
+  destenation: airportType;
+  origin: airportType;
   flightNumber: string;
   gate: string;
   flightId: string;

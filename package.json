@@ -30,8 +30,10 @@
     "cors": "^2.8.5",
     "dayjs": "^1.11.10",
     "express": "^4.19.2",
+    "fontkit": "^2.0.2",
     "mongoose": "^8.2.4",
-    "nanoid": "^5.0.6"
+    "nanoid": "^5.0.6",
+    "pdf-lib": "^1.17.1"
   },
   "type": "module"
 }
