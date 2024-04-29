@@ -3,7 +3,9 @@ import FlightModel from "../models/flightModel.js";
 import { getTLVDepartures } from "./getTLVDepartures.js";
 
 const updateAllFlightsBasedOnTLV = async () => {
-  let updatedDocumentCouter = 0;
+  let updatedDocumentsCouter = 0;
+  let deletedDocumentsCouter = 0;
+
   const allFlghts = await FlightModel.find();
   const allTLVFlights = await getTLVDepartures({
     from: dayjs().format("YYYY-MM-DD"),
@@ -17,6 +19,7 @@ const updateAllFlightsBasedOnTLV = async () => {
 
     if (!tlvFlight) {
       await flight.deleteOne();
+      deletedDocumentsCouter++;
       continue;
     }
     const { counters, dateString } = tlvFlight;
@@ -35,9 +38,9 @@ const updateAllFlightsBasedOnTLV = async () => {
     flight.keyMoments.planned.departure = dayjs(dateString).toString();
     flight.counters = counters;
     await flight.save();
-    updatedDocumentCouter++;
+    updatedDocumentsCouter++;
   }
-  return updatedDocumentCouter;
+  return { updatedDocumentsCouter, deletedDocumentsCouter };
 };
 
 export default updateAllFlightsBasedOnTLV;

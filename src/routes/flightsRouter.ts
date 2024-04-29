@@ -102,7 +102,10 @@ flightsRouter.post("/saveNewFlightFromTLVFlight", async (req, res) => {
 });
 
 flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
-  const updatedDocumentsCount = await updateAllFlightsBasedOnTLV();
-  res.send(`${updatedDocumentsCount}`);
+  const { updatedDocumentsCouter, deletedDocumentsCouter } =
+    await updateAllFlightsBasedOnTLV();
+  res.send(
+    `${updatedDocumentsCouter} Flights have been updated, and ${deletedDocumentsCouter} departed or caneled flights have been removed`
+  );
 });
 export default flightsRouter;
