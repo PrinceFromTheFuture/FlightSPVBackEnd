@@ -4,7 +4,7 @@ import { getPopulatedFlightById } from "../getPopulatedFlights.js";
 import mongoose from "mongoose";
 import drawFlightReportDate from "./drawFlightReportDate.js";
 
-export async function createAndWritePdf() {
+const generateFlightReport = async (flightId: string) => {
   const ExsitingPdfBytes = fs.readFileSync("flightreport.pdf");
   const pdfDoc = await PDFDocument.load(ExsitingPdfBytes);
   const timesRomanFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
@@ -14,7 +14,7 @@ export async function createAndWritePdf() {
   const firstPage = pages[0];
 
   const flight = await getPopulatedFlightById(
-    new mongoose.Types.ObjectId("662edbd91290e933b245d57a")
+    new mongoose.Types.ObjectId(flightId)
   );
   if (!flight) {
     return;
@@ -22,14 +22,17 @@ export async function createAndWritePdf() {
 
   drawFlightReportDate(flight, firstPage, timesRomanFont);
 
-  const pdfBytes = await pdfDoc.save();
+  const flightReportPDFFile = await pdfDoc.save();
 
-  // Write the PDF bytes to a file
-  fs.writeFile("./output.pdf", pdfBytes, (error) => {
+  fs.writeFile("./output.pdf", flightReportPDFFile, (error) => {
     if (error) {
       console.error("Error writing PDF file:", error);
       return;
     }
     console.log("PDF file has been written successfully.");
   });
-}
+
+  return flightReportPDFFile;
+};
+
+export default generateFlightReport;

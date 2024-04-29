@@ -7,6 +7,7 @@ import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
+import generateFlightReport from "../utils/FlightReportGeneration/generateFlightReport.js";
 
 const flightsRouter = express.Router();
 
@@ -108,4 +109,18 @@ flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
     `${updatedDocumentsCouter} Flights have been updated, and ${deletedDocumentsCouter} departed or caneled flights have been removed`
   );
 });
+
+flightsRouter.get("/generateFlightReport", async (req, res) => {
+  const flightId = "662fa226faf5b20fef0cc2c5";
+  const pdfFlightReport = await generateFlightReport(flightId);
+  if (!pdfFlightReport) {
+    res.send("erorr");
+  } else {
+    res.setHeader("Content-Type", "application/pdf");
+    console.log(pdfFlightReport);
+    const dirname = import.meta.dirname;
+    res.sendFile(`${dirname}/output.pdf`);
+  }
+});
+
 export default flightsRouter;
