@@ -7,7 +7,6 @@ import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
-import path from "path";
 import generateFlightReport from "../utils/FlightReportGeneration/generateFlightReport.js";
 
 const flightsRouter = express.Router();
@@ -113,13 +112,17 @@ flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
 
 flightsRouter.post("/generateFlightReport", async (req, res) => {
   const flightId: string = req.body.flightId;
-  await generateFlightReport(flightId);
+  const file = await generateFlightReport(flightId);
+  if (!file) {
+    res.send("erororr");
+  } else {
+    const fileBuffered = Buffer.from(file);
 
-  res.setHeader("Content-Type", "application/pdf");
-  const dirname = import.meta.dirname;
-  const upOneDIr = path.join(dirname, "../");
-  const upTwoDir = path.join(upOneDIr, "../");
+    res.setHeader("Content-Type", "application/pdf");
+    res.setHeader("Content-Disposition", 'inline; filename="example.pdf"'); // Change filename as needed
 
-  res.sendFile(`${upTwoDir}/output.pdf`);
+    console.log(fileBuffered);
+    res.send(fileBuffered);
+  }
 });
 export default flightsRouter;

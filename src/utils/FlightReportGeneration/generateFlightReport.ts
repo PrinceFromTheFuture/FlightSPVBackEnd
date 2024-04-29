@@ -21,14 +21,6 @@ const generateFlightReport = async (flightId: string) => {
 
   const flightReportPDFFile = await pdfDoc.save();
 
-  fs.writeFile("./output.pdf", flightReportPDFFile, (error) => {
-    if (error) {
-      console.error("Error writing PDF file:", error);
-      return;
-    }
-    console.log("PDF file has been written successfully.");
-  });
-
   return flightReportPDFFile;
 };
 
