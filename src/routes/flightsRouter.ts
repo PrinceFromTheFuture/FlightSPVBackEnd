@@ -1,9 +1,12 @@
 import express from "express";
 import FlightModel from "../models/flightModel.js";
 import { getTLVDepartures } from "../utils/getTLVDepartures.js";
-import { tlvFlightInterface } from "../types.js";
+import { flightReportKeyMoments, tlvFlightInterface } from "../types.js";
 import createNewFlightFromTLVFlight from "../utils/createNewFlightFromTLVFlight.js";
-import { getAllPopulatedFlights } from "../utils/getPopulatedFlights.js";
+import {
+  getAllPopulatedFlights,
+  getPopulatedFlightById,
+} from "../utils/getPopulatedFlights.js";
 import mongoose from "mongoose";
 import dayjs from "dayjs";
 import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
@@ -119,10 +122,30 @@ flightsRouter.post("/generateFlightReport", async (req, res) => {
     const fileBuffered = Buffer.from(file);
 
     res.setHeader("Content-Type", "application/pdf");
-    res.setHeader("Content-Disposition", 'inline; filename="example.pdf"'); // Change filename as needed
+    res.setHeader("Content-Disposition", 'inline; filename="flightReport.pdf"'); // Change filename as needed
 
-    console.log(fileBuffered);
     res.send(fileBuffered);
   }
 });
+flightsRouter.patch("/actualKeyMoments", async (req, res) => {
+  const {
+    flightId,
+    type,
+    value,
+  }: { flightId: string; type: flightReportKeyMoments; value: string } =
+    req.body.flightId;
+  const flight = await getPopulatedFlightById(flightId);
+  if (flight) {
+    flight.keyMoments.actual[type] = value;
+    await flight.save();
+  }
+});
+
+flightsRouter.post("/delete", async (req, res) => {
+  const flightId = req.body.flightId;
+
+  await FlightModel.findOneAndDelete({ flightId: flightId });
+  res.send("flightDelted");
+});
+
 export default flightsRouter;

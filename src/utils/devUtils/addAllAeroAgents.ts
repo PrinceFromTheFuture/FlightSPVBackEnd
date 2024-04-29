@@ -37,15 +37,11 @@ export const addAllAeroAgents = async () => {
     };
 
     if (jobDescription === "Flight Supervisor") {
-      const newAgent = await saveNewAgent("SPV");
-      console.log(newAgent);
+      await saveNewAgent("SPV");
     } else if (jobDescription === "Check-in Agent") {
-      const newAgent = await saveNewAgent("Agent");
-      console.log(newAgent);
+      await saveNewAgent("Agent");
     } else if (jobDescription === "GA ramp agent") {
-      const newAgent = await saveNewAgent("Ramp Agent");
-      console.log(newAgent);
+      await saveNewAgent("Ramp Agent");
     }
   }
-  console.log(count);
 };

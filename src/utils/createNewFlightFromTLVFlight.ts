@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
   let { counters, dateString, flightNumber, localApplicationId } = tlvFlight;
 
-  const date = dayjs(dateString);
+  const departureString = dayjs(dateString);
 
   const cityID = new mongoose.Types.ObjectId("6614504f440d441fc5a1e461");
   const agentID = new mongoose.Types.ObjectId("66103cbfb04bb4beb3cab22b");
@@ -16,7 +16,7 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
   const newFlight = new FlightModel({
     counters: counters,
     crew: {
-      agents: [{ agent: agentID, notes: "cant work late" }],
+      agents: [],
       SPV: { agent: agentID },
       rampAgent: { agent: agentID },
     },
@@ -24,26 +24,42 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
     origin: cityID,
     flightId: nanoid(),
     flightNumber: flightNumber,
-    flightTime: "houres",
-    gate: "houres",
+    flightTime: "2 hours",
+    gate: "E1A",
     keyMoments: {
       actual: {
-        countersOpening: "houres",
-        countersClosing: "houres",
-        bordingEnd: "houres",
-        bordingStart: "houres",
-        offBlock: "houres",
-        openningBoardingPagia: "houres",
+        countersOpening: dayjs(departureString)
+          .subtract(180, "minutes")
+          .toISOString(),
+        countersClosing: dayjs(departureString)
+          .subtract(60, "minutes")
+          .toISOString(),
+        openningBoardingPagia: dayjs(departureString)
+          .subtract(50, "minutes")
+          .toISOString(),
+        bordingStart: dayjs(departureString)
+          .subtract(45, "minutes")
+          .toISOString(),
+        bordingEnd: dayjs(departureString)
+          .subtract(15, "minutes")
+          .toISOString(),
+        offBlock: dayjs(departureString).subtract(10, "minutes").toISOString(),
       },
       planned: {
-        shiftStarts: dayjs(date).subtract(210, "minutes").toISOString(),
-        countersOpening: dayjs(date).subtract(180, "minutes").toISOString(),
-        countersClosing: dayjs(date).subtract(60, "minutes").toISOString(),
-        bording: dayjs(date).subtract(45, "minutes").toISOString(),
-        departure: dayjs(date).toISOString(),
+        shiftStarts: dayjs(departureString)
+          .subtract(210, "minutes")
+          .toISOString(),
+        countersOpening: dayjs(departureString)
+          .subtract(180, "minutes")
+          .toISOString(),
+        countersClosing: dayjs(departureString)
+          .subtract(60, "minutes")
+          .toISOString(),
+        bording: dayjs(departureString).subtract(45, "minutes").toISOString(),
+        departure: dayjs(departureString).toISOString(),
       },
     },
-    PAGIAAgent: "houres",
+    PAGIAAgent: "Noa",
     totalPassangers: 0,
     totalSuitcases: 0,
     totalStrollers: 0,

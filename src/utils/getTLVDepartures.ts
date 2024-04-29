@@ -43,7 +43,6 @@ export const getTLVDepartures = async ({
     from: dayjs(from).format("M/D/YYYY"),
     to: dayjs(to).format("M/D/YYYY"),
   };
-  console.log(from, to);
   const data = new URLSearchParams({
     FlightType: "Outgoing",
     AirportId: "LLBG",

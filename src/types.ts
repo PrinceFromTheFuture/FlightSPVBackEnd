@@ -105,3 +105,11 @@ export interface flightSchemaInterface {
   totalSuitcases: number;
   localApplicationId: number;
 }
+
+export type flightReportKeyMoments =
+  | "countersOpening"
+  | "countersClosing"
+  | "bordingEnd"
+  | "bordingStart"
+  | "openningBoardingPagia"
+  | "offBlock";
