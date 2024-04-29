@@ -7,7 +7,7 @@ import AirportModel from "./airportModel.js";
 
 const flightSchema = new Schema<flightSchemaInterface>({
   personalRole: { type: String, required: true },
-  counters: { type: String, required: true, default: "---" },
+  counters: { type: String, required: false, default: "---" },
   crew: {
     agents: [
       {
