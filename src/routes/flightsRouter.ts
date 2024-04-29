@@ -112,18 +112,11 @@ flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
 });
 
 flightsRouter.get("/generateFlightReport", async (req, res) => {
-  const flightId = "662fa226faf5b20fef0cc2c5";
-  const pdfFlightReport = await generateFlightReport(flightId);
-  if (!pdfFlightReport) {
-    res.send("erorr");
-  } else {
-    res.setHeader("Content-Type", "application/pdf");
-    console.log(pdfFlightReport);
-    const dirname = import.meta.dirname;
-    const twoFoldersUp = path.join(dirname, "../../"); // Go up two folders
-    console.log(twoFoldersUp);
-    res.sendFile(`${twoFoldersUp}/output.pdf`);
-  }
-});
+  res.setHeader("Content-Type", "application/pdf");
+  const dirname = import.meta.dirname;
+  const test = path.join(dirname, "../");
+  const test1 = path.join(test, "../");
 
+  res.sendFile(`${test1}/output.pdf`);
+});
 export default flightsRouter;
