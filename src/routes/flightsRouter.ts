@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import dayjs from "dayjs";
 import updateAllFlightsBasedOnTLV from "../utils/updateAllFlightsBasedOnTLV.js";
 import path from "path";
+import generateFlightReport from "../utils/FlightReportGeneration/generateFlightReport.js";
 
 const flightsRouter = express.Router();
 
@@ -111,12 +112,14 @@ flightsRouter.get("/updateFlightsBasedOnTLV", async (req, res) => {
 });
 
 flightsRouter.get("/generateFlightReport", async (req, res) => {
-  res.setHeader("Content-Type", "application/pdf");
-  console.log("test");
-  const dirname = import.meta.dirname;
-  const test = path.join(dirname, "../");
-  const test1 = path.join(test, "../");
+  const flightId: string = req.body.flightId;
+  await generateFlightReport(flightId);
 
-  res.sendFile(`${test1}/output.pdf`);
+  res.setHeader("Content-Type", "application/pdf");
+  const dirname = import.meta.dirname;
+  const upOneDIr = path.join(dirname, "../");
+  const upTwoDir = path.join(upOneDIr, "../");
+
+  res.sendFile(`${upTwoDir}/output.pdf`);
 });
 export default flightsRouter;

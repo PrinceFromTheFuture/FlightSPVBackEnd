@@ -1,7 +1,6 @@
 import { PDFDocument, StandardFonts } from "pdf-lib";
 import fs from "fs";
 import { getPopulatedFlightById } from "../getPopulatedFlights.js";
-import mongoose from "mongoose";
 import drawFlightReportDate from "./drawFlightReportDate.js";
 
 const generateFlightReport = async (flightId: string) => {
@@ -13,9 +12,7 @@ const generateFlightReport = async (flightId: string) => {
 
   const firstPage = pages[0];
 
-  const flight = await getPopulatedFlightById(
-    new mongoose.Types.ObjectId(flightId)
-  );
+  const flight = await getPopulatedFlightById(flightId);
   if (!flight) {
     return;
   }

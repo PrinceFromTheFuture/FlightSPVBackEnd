@@ -51,7 +51,7 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
     localApplicationId: localApplicationId,
   });
   const savedFlight = await newFlight.save();
-  const populatedFlight = getPopulatedFlightById(savedFlight._id);
+  const populatedFlight = getPopulatedFlightById(savedFlight.flightId);
 
   return populatedFlight;
 };

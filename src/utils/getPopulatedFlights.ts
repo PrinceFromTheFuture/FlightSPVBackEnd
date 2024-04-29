@@ -2,10 +2,8 @@ import monogoose from "mongoose";
 import FlightModel from "../models/flightModel.js";
 import { flightInterface } from "../types.js";
 
-export const getPopulatedFlightById = async (
-  flightId: monogoose.Types.ObjectId
-) => {
-  const populatedFlight = (await FlightModel.findById(flightId)
+export const getPopulatedFlightById = async (flightId: string) => {
+  const populatedFlight = (await FlightModel.findOne({ flightId: flightId })
     .populate("destenation")
     .populate("origin")
     .populate("crew.agents.agent")
