@@ -91,6 +91,7 @@ export interface flightSchemaInterface {
     actual: {
       countersOpening: string;
       countersClosing: string;
+      arrivedToGate: string;
       bordingEnd: string;
       bordingStart: string;
       offBlock: string;

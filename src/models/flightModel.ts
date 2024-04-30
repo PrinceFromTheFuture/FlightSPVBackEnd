@@ -58,6 +58,8 @@ const flightSchema = new Schema<flightSchemaInterface>({
     actual: {
       countersOpening: { type: String },
       countersClosing: { type: String },
+      arrivedToGate: { type: String },
+
       bordingEnd: { type: String },
       bordingStart: { type: String },
       offBlock: { type: String },

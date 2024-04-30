@@ -37,6 +37,9 @@ const createNewFlightFromTLVFlight = async (tlvFlight: tlvFlightInterface) => {
         openningBoardingPagia: dayjs(departureString)
           .subtract(50, "minutes")
           .toISOString(),
+        arrivedToGate: dayjs(departureString)
+          .subtract(50, "minutes")
+          .toISOString(),
         bordingStart: dayjs(departureString)
           .subtract(45, "minutes")
           .toISOString(),

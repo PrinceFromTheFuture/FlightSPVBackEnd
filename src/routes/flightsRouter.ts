@@ -124,6 +124,7 @@ flightsRouter.post("/generateFlightReport", async (req, res) => {
     res.send(fileBuffered);
   }
 });
+
 flightsRouter.patch("/actualKeyMoments", async (req, res) => {
   const {
     flightId,
@@ -135,6 +136,24 @@ flightsRouter.patch("/actualKeyMoments", async (req, res) => {
   const flight = await FlightModel.findOne({ flightId: flightId });
   if (flight) {
     flight.keyMoments.actual[type] = value;
+    await flight.save();
+  }
+});
+
+flightsRouter.patch("/flightReportNumbers", async (req, res) => {
+  const {
+    flightId,
+    type,
+    value,
+  }: {
+    flightId: string;
+    type: "totalPassangers" | "totalStrollers" | "totalSuitcases";
+    value: number;
+  } = req.body;
+
+  const flight = await FlightModel.findOne({ flightId: flightId });
+  if (flight) {
+    flight[type] = value;
     await flight.save();
   }
 });
