@@ -16,10 +16,8 @@ export type flightCrewType = {
   rampAgent: { agent: agentType[]; notes?: string };
 };
 export type airportType = {
-  _id: string;
   code: string;
   name: string;
-  airportId: string;
 };
 export interface tlvFlightInterface {
   dateString: string;

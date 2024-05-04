@@ -8,4 +8,12 @@ airportsRouter.get("/deleteAll", async (req, res) => {
   res.send("deleted");
 });
 
+airportsRouter.get("/getAll", async (req, res) => {
+  const allAirPortsDocuments = await AirportModel.find();
+  const allAirPorts = allAirPortsDocuments.map((airPortDocument) => {
+    return { code: airPortDocument.code, name: airPortDocument.name };
+  });
+  res.json(allAirPorts);
+});
+
 export default airportsRouter;
