@@ -1,4 +1,5 @@
-import { Schema } from "mongoose";
+import { Agent } from "http";
+import mongoose, { Schema } from "mongoose";
 
 export type agentType = {
   name: string;
@@ -7,8 +8,6 @@ export type agentType = {
   agentId: string;
   phone: string;
   email: string;
-  _id: string;
-  __v?: string;
 };
 export type flightCrewType = {
   agents: { agent: agentType[]; notes?: string };
@@ -27,8 +26,18 @@ export interface tlvFlightInterface {
   localApplicationId: number;
 }
 
+export interface Message {
+  author: mongoose.Schema.Types.ObjectId | agentType | string;
+  messageType: "image" | "text";
+  content: string;
+}
+export interface flightConversation {
+  messages: Message[];
+  flight: mongoose.Schema.Types.ObjectId;
+}
 export interface flightInterface {
   crew: flightCrewType;
+  flightConversation: flightConversation;
   keyMoments: {
     planned: {
       shiftStarts: string;
@@ -56,9 +65,9 @@ export interface flightInterface {
   flightId: string;
   flightTime: string;
   PAGIAAgent: string;
-  totalPassangers: 323;
-  totalStrollers: 323;
-  totalSuitcases: 323;
+  totalPassangers: number;
+  totalStrollers: number;
+  totalSuitcases: number;
   localApplicationId: number;
   __v?: 0;
 }
@@ -103,6 +112,7 @@ export interface flightSchemaInterface {
   totalStrollers: number;
   totalSuitcases: number;
   localApplicationId: number;
+  flightConversation: Schema.Types.ObjectId;
 }
 
 export type flightReportKeyMoments =

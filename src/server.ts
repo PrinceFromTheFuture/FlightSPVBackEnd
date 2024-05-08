@@ -9,6 +9,8 @@ import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat.js";
 import cors from "cors";
 
+import conversationsRouter from "./routes/conversactionsRouter.js";
+
 configDotenv();
 dayjs.extend(customParseFormat);
 
@@ -22,6 +24,7 @@ app.use(express.json());
 app.use("/flights", flightsRouter);
 app.use("/agents", agentsRouter);
 app.use("/airports", airportsRouter);
+app.use("/conversations", conversationsRouter);
 
 app.listen(applicationPort, async () => {
   console.log(
