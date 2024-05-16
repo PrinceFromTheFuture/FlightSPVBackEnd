@@ -60,7 +60,7 @@ export const getTLVDepartures = async ({
     headers,
   });
   // filter only the flights responsible by aeroHandling to be processed
-  const filterOptions = ["iz", "ux", "j2", "cy", "et", "qs", "wz", "hy","lv"]; // Add more options as needed
+  const filterOptions = ["iz", "ux", "j2", "cy", "et", "qs", "wz", "hy","lv","fb"]; // Add more options as needed
   const aeroFlights = response.data.Flights.filter((flight) => {
     const flightCode = flight.Flight.toLowerCase();
     return filterOptions.some((option) => flightCode.includes(option));
